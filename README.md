@@ -67,7 +67,7 @@ Currently working as a **Junior Full-Stack Developer** at **iMS Technologies**, 
 
 ## Education
 
-**Bachelor in Computer Science and Engineering**
+**Bachelor in Computer Science and Engineering**, 
 **Bangladesh University of Professionals**
 
 ---
