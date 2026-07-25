@@ -1,41 +1,81 @@
-# `// MEHRAB HOSSAIN`
+# Hi there, I'm Mehrab Hossain
 
-**Junior Full-Stack Developer** > Building digital experiences. Developing with MERN & Next.js. Currently @ iMS Technologies.
-
----
-
-### `>_ ABOUT ME`
-
-I am a CSE student at **BUP** and a Full-Stack Developer currently deploying code at **iMS Technologies**. I love bridging the gap between technical logic and seamless user experiences, focusing primarily on the modern JavaScript ecosystem.
-
-- **Current Runtime:** Junior Full-Stack Dev @ iMS Technologies
-- **Learning Buffer:** Advanced Next.js architectures & System Design
+**Full-Stack JavaScript Developer** passionate about building scalable, high-performance web applications with modern technologies.
 
 ---
 
-### `>_ MY TECH STACK`
+## About Me
 
-**Frontend Architecture:**
-Next.js | React | TypeScript | Tailwind CSS
+I'm a Full-Stack Developer focused on building production-ready applications using the JavaScript ecosystem. I enjoy designing clean backend architectures, creating responsive user interfaces, and solving real-world engineering problems.
 
-**Backend & Database:**
-Node.js | Express.js | MongoDB
-
-**Tools & Environment:**
-Git | Vercel | GitHub
+Currently working as a **Junior Full-Stack Developer** at **iMS Technologies**, where I develop scalable web applications using Next.js, Express.js, TypeScript, MongoDB, and PostgreSQL.
 
 ---
 
-### `>_ TELEMETRY_DATA`
+## Tech Stack
 
-![Mehrab's GitHub Stats](https://github-readme-stats.vercel.app/api?username=DevMehrab&show_icons=true&hide_border=true&bg_color=0a0a0a&title_color=06B6D4&icon_color=06B6D4&text_color=ededed&font=Fira%20Code)
+### Frontend
 
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=DevMehrab&layout=compact&hide_border=true&bg_color=0a0a0a&title_color=06B6D4&text_color=ededed&font=Fira%20Code)
+* Next.js
+* React
+* TypeScript
+* JavaScript (ES6+)
+* Tailwind CSS
+
+### Backend
+
+* Node.js
+* Express.js
+* REST APIs
+* Authentication & Authorization
+* Role-Based Access Control (RBAC)
+* Redis
+* BullMQ
+* Docker
+
+### Database
+
+* MongoDB
+* Mongoose
+* Aggregation Pipeline
+* MongoDB Transactions
+
+### Tools
+
+* Git
+* GitHub
+* Postman
+* Hoppscotch
+* VS Code
+* Figma
 
 ---
 
-### `>_ NETWORK_LINKS`
+## Experience
 
-- [🔗 Portfolio](https://devmehrab.com)
-- [💼 Connect_LinkedIn](https://linkedin.com/in/devmehrab)
-- [✉️ Mail_Me](mailto:dev.mehrabhossain@gmail.com)
+### Junior Full-Stack Developer • iMS Technologies
+
+**Dec 2025 – Present**
+
+* Developed an investor portal and admin dashboard with Stripe payment integration.
+* Built reliable financial workflows using MongoDB Transactions and Aggregation Pipelines.
+* Converted modern Figma designs into SEO-friendly Next.js applications.
+* Integrated Sanity CMS for blog and webinar content management.
+* Optimised applications for performance, accessibility, and search engines.
+
+---
+
+## Education
+
+**Bachelor in Computer Science and Engineering**
+**Bangladesh University of Professionals**
+
+---
+
+## Connect With Me
+
+Portfolio: **https://devmehrab.com**
+
+LinkedIn: **[www.linkedin.com/in/devmehrab](http://www.linkedin.com/in/devmehrab)**
+
+Email: **[dev.mehrabhossain@gmail.com](mailto:dev.mehrabhossain@gmail.com)**
