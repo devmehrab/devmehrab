@@ -8,7 +8,7 @@ const projects: Project[] = [
       "University social network monorepo featuring real-time chat, student feeds, and an AI/RAG document retrieval service.",
     tech: ["Next.js", "Express", "MongoDB", "Socket.IO", "Docker", "RAG"],
     image: "/projects/campus.png",
-    live: "https://bup-cse.netlify.app",
+    live: "https://bup-cse.vercel.app",
     github: "https://github.com/devmehrab/campus-connect",
   },
   {
