@@ -5,31 +5,30 @@ import Lenis from "lenis";
 
 export default function SmoothScroll() {
   useEffect(() => {
-    // Initialize Lenis with premium physics settings
+    // Initialize Lenis with smooth physics for optimal performance
     const lenis = new Lenis({
-      duration: 1.2, // Slightly longer duration for a more luxurious feel
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Expo Out easing
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
       wheelMultiplier: 1,
-      touchMultiplier: 2,
+      touchMultiplier: 1.5,
     });
 
-    // Sync Lenis with the browser's refresh rate
+    let rafId: number;
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     }
 
-    requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
 
-    // Cleanup on unmount to prevent memory leaks
     return () => {
+      cancelAnimationFrame(rafId);
       lenis.destroy();
     };
   }, []);
 
-  // This component doesn't render anything to the DOM
   return null;
 }

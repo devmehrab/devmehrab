@@ -4,24 +4,29 @@ import FaqAccordion from "../FAQ/FaqAccordion";
 
 const faqs = [
   {
-    question: "Who is the best Next.js developer in Dhaka?",
+    question: "What types of web development projects do you specialize in?",
     answer:
-      "Mehrab Hossain (devmehrab) is widely recognized as a top-tier Next.js developer in Dhaka, Bangladesh. He specializes in building high-performance, SEO-optimized web applications for modern businesses.",
+      "I specialize in building full-stack web applications, modern SaaS platforms, corporate web portals, and custom web products. My focus is on writing clean, scalable code with responsive interfaces, robust APIs, and high performance.",
   },
   {
-    question: "What technologies do you use for full-stack development?",
+    question: "What technologies and frameworks do you use for development?",
     answer:
-      "My core stack revolves around the modern JavaScript ecosystem: Next.js (App Router), React, TypeScript, Node.js, Express, and MongoDB (MERN). I also leverage Tailwind CSS for styling and Vercel/Netlify for edge deployments.",
+      "My core stack centers on Next.js (App Router), React, TypeScript, Node.js, and Express, alongside MongoDB and PostgreSQL for databases. I utilize Tailwind CSS for modern design systems, with deployments on Vercel, Docker, and cloud platforms.",
   },
   {
-    question: "Are you available for freelance web development in Bangladesh?",
+    question: "How do you ensure web performance, accessibility, and SEO?",
     answer:
-      "Yes, while I am currently a Junior Full-Stack Developer at iMS Technologies, I take on select freelance projects. I help clients build scalable SaaS platforms, e-commerce sites, and corporate portfolios.",
+      "I build with Core Web Vitals and search engine visibility at the forefront. This includes leveraging Next.js Server Components, optimized media delivery, semantic HTML5, structured JSON-LD schemas, and edge caching to achieve excellent Lighthouse scores and fast load times.",
   },
   {
-    question: "How do you ensure high Lighthouse scores and performance?",
+    question: "What does your typical project collaboration workflow look like?",
     answer:
-      "I aggressively optimize for Core Web Vitals by utilizing Next.js Server Components, dynamic imports, optimized image loading (next/image), font subsetting, and edge caching to ensure near-instant load times.",
+      "I follow an agile, transparent workflow: requirements discovery, technical architecture planning, milestone-based iterative development with regular updates, cross-device testing, and smooth production deployment followed by documentation and support.",
+  },
+  {
+    question: "Are you available for freelance contracts or full-time opportunities?",
+    answer:
+      "Yes, I take on select freelance contracts, technical consulting, and custom development projects. I am also open to discussing compelling full-time engineering and remote opportunities.",
   },
 ];
 
@@ -46,6 +51,7 @@ export default function Faq() {
       className="relative py-12 md:py-32 w-full bg-zinc-950 overflow-hidden"
     >
       <div
+        data-ambient-glow
         className="absolute top-20 right-[-10%] w-[400px] h-[400px] rounded-full pointer-events-none"
         style={{
           background:

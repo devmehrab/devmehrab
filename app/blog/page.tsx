@@ -4,6 +4,10 @@ import matter from "gray-matter";
 import Link from "next/link";
 import { Metadata } from "next";
 import { TerminalSquare, FolderGit2, Calendar, ArrowRight } from "lucide-react";
+import { client, isSanityConfigured } from "@/sanity/lib/client";
+import { POSTS_QUERY } from "@/sanity/lib/queries";
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Engineering Blog & Tutorials | Mehrab Hossain",
@@ -20,30 +24,77 @@ export const metadata: Metadata = {
   },
 };
 
+interface BlogPostItem {
+  slug: string;
+  title: string;
+  description: string;
+  publishedAt: string;
+  tags: string[];
+}
+
 const BLOG_DIR = path.join(process.cwd(), "content", "blog");
 
-function getAllPosts() {
-  const files = fs.readdirSync(BLOG_DIR);
+async function getAllPosts(): Promise<BlogPostItem[]> {
+  const postsMap = new Map<string, BlogPostItem>();
 
-  const posts = files.map((filename) => {
-    const slug = filename.replace(".mdx", "");
-    const fileContent = fs.readFileSync(path.join(BLOG_DIR, filename), "utf8");
-    const { data } = matter(fileContent);
-    return { slug, frontmatter: data };
-  });
+  // 1. Try fetching from Sanity if configured
+  if (isSanityConfigured) {
+    try {
+      const sanityPosts = await client.fetch(POSTS_QUERY);
+      if (Array.isArray(sanityPosts)) {
+        for (const post of sanityPosts) {
+          if (post?.slug) {
+            postsMap.set(post.slug, {
+              slug: post.slug,
+              title: post.title || "Untitled Post",
+              description: post.excerpt || "",
+              publishedAt: post.publishedAt || new Date().toISOString(),
+              tags: post.categories || [],
+            });
+          }
+        }
+      }
+    } catch {
+      // If Sanity network fails, silently fall back to MDX
+    }
+  }
 
+  // 2. Read local MDX files as fallback or coexisting posts
+  try {
+    if (fs.existsSync(BLOG_DIR)) {
+      const files = fs.readdirSync(BLOG_DIR);
+      for (const filename of files) {
+        if (!filename.endsWith(".mdx")) continue;
+        const slug = filename.replace(".mdx", "");
+        if (!postsMap.has(slug)) {
+          const fileContent = fs.readFileSync(path.join(BLOG_DIR, filename), "utf8");
+          const { data } = matter(fileContent);
+          postsMap.set(slug, {
+            slug,
+            title: data.title || slug,
+            description: data.description || "",
+            publishedAt: data.publishedAt || new Date().toISOString(),
+            tags: data.tags || [],
+          });
+        }
+      }
+    }
+  } catch {
+    // Ignore local read errors
+  }
+
+  const posts = Array.from(postsMap.values());
   return posts.sort(
     (a, b) =>
-      new Date(b.frontmatter.publishedAt).getTime() -
-      new Date(a.frontmatter.publishedAt).getTime(),
+      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
   );
 }
 
-export default function BlogHub() {
-  const posts = getAllPosts();
+export default async function BlogHub() {
+  const posts = await getAllPosts();
 
   const allTags = Array.from(
-    new Set(posts.flatMap((post) => post.frontmatter.tags || [])),
+    new Set(posts.flatMap((post) => post.tags || [])),
   ).sort();
 
   const jsonLd = {
@@ -53,7 +104,7 @@ export default function BlogHub() {
       "@type": "ListItem",
       position: index + 1,
       url: `https://devmehrab.com/blog/${post.slug}`,
-      name: post.frontmatter.title,
+      name: post.title,
     })),
   };
 
@@ -97,11 +148,11 @@ export default function BlogHub() {
                   href={`/blog/${post.slug}`}
                   className="absolute inset-0 z-10"
                 >
-                  <span className="sr-only">Read {post.frontmatter.title}</span>
+                  <span className="sr-only">Read {post.title}</span>
                 </Link>
 
                 <div className="flex flex-wrap gap-2 mb-4 relative z-20">
-                  {post.frontmatter.tags?.map((tag: string) => (
+                  {post.tags?.map((tag: string) => (
                     <span
                       key={tag}
                       className="px-2.5 py-1 text-xs font-mono text-cyan-400 bg-cyan-500/10 rounded-md border border-cyan-500/20"
@@ -112,19 +163,19 @@ export default function BlogHub() {
                 </div>
 
                 <h3 className="text-2xl font-bold text-zinc-100 mb-3 group-hover:text-cyan-400 transition-colors">
-                  {post.frontmatter.title}
+                  {post.title}
                 </h3>
 
                 <p className="text-zinc-400 leading-relaxed mb-6">
-                  {post.frontmatter.description}
+                  {post.description}
                 </p>
 
                 <div className="mt-auto flex items-center justify-between text-sm">
                   <time
                     className="text-zinc-500 font-mono"
-                    dateTime={post.frontmatter.publishedAt}
+                    dateTime={post.publishedAt}
                   >
-                    {new Date(post.frontmatter.publishedAt).toLocaleDateString(
+                    {new Date(post.publishedAt).toLocaleDateString(
                       "en-US",
                       {
                         month: "short",
@@ -151,7 +202,7 @@ export default function BlogHub() {
               <div className="flex flex-col gap-2">
                 {allTags.map((tag) => {
                   const count = posts.filter((p) =>
-                    p.frontmatter.tags?.includes(tag),
+                    p.tags?.includes(tag),
                   ).length;
 
                   return (

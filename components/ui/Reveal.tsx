@@ -5,26 +5,30 @@ import { motion } from "framer-motion";
 interface RevealProps {
   children: React.ReactNode;
   delay?: number;
+  duration?: number;
+  yOffset?: number;
   className?: string;
 }
 
 export default function Reveal({
   children,
   delay = 0,
+  duration = 0.8,
+  yOffset = 24,
   className = "",
 }: RevealProps) {
   return (
     <motion.div
       className={className}
       variants={{
-        hidden: { opacity: 0, y: 30 },
+        hidden: { opacity: 0, y: yOffset },
         visible: { opacity: 1, y: 0 },
       }}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-50px" }} // Triggers slightly before coming fully into view
+      viewport={{ once: true, margin: "-40px" }}
       transition={{
-        duration: 0.8,
+        duration: duration,
         delay: delay,
         ease: [0.22, 1, 0.36, 1],
       }}
@@ -33,3 +37,4 @@ export default function Reveal({
     </motion.div>
   );
 }
+

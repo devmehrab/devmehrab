@@ -24,14 +24,17 @@ export default function About() {
       id="about"
       className="relative py-12 md:py-32 w-full bg-zinc-950 overflow-hidden"
     >
-      <div className="absolute top-40 left-[-10%] w-[500px] h-[500px] bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none" />
+      <div
+        data-ambient-glow
+        className="absolute top-40 left-[-10%] w-[500px] h-[500px] bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none"
+      />
 
       <div className="max-w-7xl mx-auto px-6 w-full flex flex-col lg:flex-row gap-12 lg:gap-20">
         <div className="lg:w-24 flex-shrink-0">
           <Reveal delay={0.1}>
             <div className="flex items-center gap-4 lg:flex-col lg:h-full lg:justify-start">
               <span className="text-cyan-500 font-mono text-sm">01.</span>
-              <div className="h-[1px] hidden md:block w-12 lg:w-[1px] lg:h-24 bg-zinc-800" />
+              <div className="section-divider-line h-[1px] hidden md:block w-12 lg:w-[1px] lg:h-24 bg-zinc-800" />
               <h2 className="text-3xl lg:text-4xl font-bold text-zinc-100 tracking-widest uppercase lg:-rotate-180 lg:[writing-mode:vertical-rl] whitespace-nowrap">
                 Background
               </h2>

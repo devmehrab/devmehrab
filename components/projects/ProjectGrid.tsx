@@ -1,93 +1,127 @@
 "use client";
 
+import Image from "next/image";
 import Reveal from "@/components/ui/Reveal";
-import { ArrowUpRight, Activity, GitBranch } from "lucide-react";
+import { ArrowUpRight, Github } from "lucide-react";
 
-// Define the type for your project data
-type Project = {
+export type Project = {
   title: string;
   description: string;
   tech: string[];
+  image: string;
   live: string;
-  featured: boolean;
+  github?: string;
+  featured?: boolean;
 };
 
 export default function ProjectGrid({ projects }: { projects: Project[] }) {
   return (
-    <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
       {projects.map((project, index) => (
         <Reveal
           key={index}
-          delay={0.2 + index * 0.1}
-          className={project.featured ? "md:col-span-2" : "md:col-span-1"}
+          delay={0.15 + (index % 2) * 0.1}
+          duration={0.9}
+          className="h-full flex"
         >
-          <a
-            href={project.live}
-            target="_blank"
-            rel="noreferrer"
-            className="group block relative h-full bg-zinc-900/30 border border-zinc-800/50 rounded-2xl p-6 sm:p-8 overflow-hidden hover:border-cyan-500/50 transition-all duration-500"
-          >
-            {/* Hover Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 via-cyan-500/0 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="group relative flex flex-col w-full h-full bg-zinc-900/25 border border-zinc-800/60 rounded-2xl overflow-hidden hover:border-cyan-500/40 transition-all duration-500 hover:shadow-[0_0_30px_rgba(6,182,212,0.06)]">
+            {/* Subtle Hover Gradient Glow */}
+            <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 via-cyan-500/0 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" />
 
-            {/* Background Grid Accent for Featured Project */}
-            {project.featured && (
-              <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)] opacity-50" />
-            )}
+            {/* Thumbnail / Cover Image */}
+            <div className="relative w-full aspect-[16/9] overflow-hidden bg-zinc-950 border-b border-zinc-800/50">
+              <a
+                href={project.live}
+                target="_blank"
+                rel="noreferrer"
+                className="block w-full h-full relative"
+                aria-label={`Visit live site for ${project.title}`}
+              >
+                <Image
+                  src={project.image}
+                  alt={`${project.title} Preview`}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+                  priority={index < 2}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/25 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-300" />
+              </a>
 
-            <div className="relative z-10 flex flex-col h-full justify-between gap-8">
-              {/* Card Header */}
-              <div className="flex justify-between items-start">
-                <div className="flex items-center gap-3">
-                  <div className="flex items-center justify-center w-8 h-8 rounded-full bg-zinc-950 border border-zinc-800 group-hover:border-cyan-500/30 transition-colors">
-                    <Activity className="w-4 h-4 text-cyan-400" />
-                  </div>
-                  <span className="font-mono text-xs text-zinc-500 flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                    Status: Live
+              {/* Status and Index Badge */}
+              <div className="absolute top-3.5 left-4 right-4 flex justify-between items-center pointer-events-none z-20">
+                <div className="flex items-center gap-2 px-2.5 py-1 rounded-full bg-zinc-950/80 backdrop-blur-md border border-zinc-800/80">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="font-mono text-[11px] text-zinc-300 tracking-wider">
+                    Live
                   </span>
                 </div>
 
-                {/* Giant Watermark Number */}
-                <span className="text-5xl font-bold text-zinc-800/30 font-mono -mt-4 -mr-2 group-hover:text-cyan-900/20 transition-colors">
+                <span className="font-mono text-xs font-medium px-2.5 py-1 rounded-full bg-zinc-950/80 backdrop-blur-md border border-zinc-800/80 text-cyan-400">
                   0{index + 1}
                 </span>
               </div>
+            </div>
 
-              {/* Card Body */}
-              <div className="space-y-4">
-                <h3
-                  className={`font-bold text-zinc-100 group-hover:text-cyan-400 transition-colors ${
-                    project.featured ? "text-3xl sm:text-4xl" : "text-2xl"
-                  }`}
-                >
-                  {project.title}
+            {/* Card Content - Streamlined & Minimal */}
+            <div className="relative z-10 flex flex-col flex-1 justify-between p-5 sm:p-6 gap-5">
+              <div className="space-y-2.5">
+                <h3 className="text-xl font-bold text-zinc-100 group-hover:text-cyan-400 transition-colors">
+                  <a
+                    href={project.live}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:underline decoration-cyan-400/40 underline-offset-4"
+                  >
+                    {project.title}
+                  </a>
                 </h3>
-                <p className="text-zinc-400 text-sm sm:text-base leading-relaxed max-w-2xl">
+
+                <p className="text-zinc-400 text-sm leading-relaxed">
                   {project.description}
                 </p>
               </div>
 
-              {/* Card Footer (Tech Stack & Link) */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-6 border-t border-zinc-800/50">
-                <div className="flex flex-wrap gap-2">
+              {/* Footer: Tech Stack & Action Links */}
+              <div className="space-y-4 pt-3 border-t border-zinc-800/50 mt-auto">
+                <div className="flex flex-wrap gap-1.5">
                   {project.tech.map((tech, i) => (
-                    <div key={i} className="flex items-center gap-1.5">
-                      <GitBranch className="w-3 h-3 text-zinc-600" />
-                      <span className="text-xs font-mono text-zinc-400">
-                        {tech}
-                      </span>
-                    </div>
+                    <span
+                      key={i}
+                      className="px-2.5 py-0.5 rounded-md bg-zinc-950/70 border border-zinc-800/70 text-[11px] font-mono text-zinc-400"
+                    >
+                      {tech}
+                    </span>
                   ))}
                 </div>
 
-                <div className="md:flex items-center gap-2 text-cyan-400 hidden font-mono text-sm opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-                  <span>View_Deployment</span>
-                  <ArrowUpRight className="w-4 h-4" />
+                <div className="flex items-center gap-2.5 pt-1">
+                  <a
+                    href={project.live}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex-1 inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-lg bg-cyan-500/10 hover:bg-cyan-500 border border-cyan-500/30 hover:border-cyan-500 text-cyan-400 hover:text-zinc-950 font-mono text-xs font-semibold tracking-wide transition-all duration-300 group/btn"
+                  >
+                    <span>Live Preview</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+                  </a>
+
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-lg bg-zinc-950 hover:bg-zinc-800/80 border border-zinc-800 hover:border-zinc-700 text-zinc-300 hover:text-zinc-100 font-mono text-xs font-medium transition-all duration-300"
+                      aria-label={`${project.title} GitHub Repository`}
+                    >
+                      <Github className="w-3.5 h-3.5 text-zinc-400 group-hover:text-zinc-200" />
+                      <span>Code</span>
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
-          </a>
+          </div>
         </Reveal>
       ))}
     </div>

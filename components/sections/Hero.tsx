@@ -1,5 +1,5 @@
 import Reveal from "@/components/ui/Reveal";
-import { ArrowRight, Terminal, Database, Code2 } from "lucide-react";
+import { ArrowRight, Terminal, Database, Code2, FileText } from "lucide-react";
 
 export default function Hero() {
   return (
@@ -8,8 +8,14 @@ export default function Hero() {
       aria-label="Mehrab Hossain - Full-Stack Developer Hero Section"
       className="relative min-h-screen flex flex-col justify-center w-full overflow-hidden bg-zinc-950"
     >
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-500/10 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 left-[-20%] w-[400px] h-[400px] bg-blue-600/10 blur-[120px] rounded-full pointer-events-none" />
+      <div
+        data-ambient-glow
+        className="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-500/10 blur-[120px] rounded-full pointer-events-none"
+      />
+      <div
+        data-ambient-glow
+        className="absolute bottom-0 left-[-20%] w-[400px] h-[400px] bg-blue-600/10 blur-[120px] rounded-full pointer-events-none"
+      />
 
       <div className="max-w-7xl mx-auto px-6 w-full z-10 flex flex-col items-center justify-center pt-20 lg:pt-0">
         <div className="flex flex-col items-center text-center space-y-8 max-w-4xl">
@@ -27,9 +33,9 @@ export default function Hero() {
 
           <Reveal delay={0.2}>
             <h1 className="text-6xl sm:text-8xl lg:text-[7rem] font-bold tracking-tighter leading-[0.9]">
-              <span className=" text-zinc-100">Mehrab </span>
+              <span className="text-zinc-100"></span>
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-cyan-600 pb-2">
-                Hossain <span className="sr-only">Jim - devmehrab</span>
+                Mehrab Hossain <span className="sr-only">Jim - devmehrab</span>
               </span>
             </h1>
           </Reveal>
@@ -40,7 +46,7 @@ export default function Hero() {
                 Full Stack Developer
               </h2>
               <p className="text-zinc-500 text-base sm:text-lg leading-relaxed">
-                I am Mehrab Hossain , a Junior Full-Stack Developer at iMS
+                I am Mehrab Hossain, a Junior Full-Stack Developer at iMS
                 Technologies, studying CSE at BUP. I specialize in building
                 high-performance Next.js & MERN applications with a focus on SEO
                 and scalability.
@@ -64,11 +70,14 @@ export default function Hero() {
 
               <a
                 href="/Resume Mehrab Hossain.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 download="Resume Mehrab Hossain.pdf"
-                title="Download Mehrab Hossain's Resume"
-                className="px-8 py-4 text-zinc-400 font-mono text-sm rounded-lg border border-zinc-800 hover:text-cyan-400 hover:bg-zinc-900 hover:border-cyan-400/30 transition-all inline-block"
+                title="View and Download Mehrab Hossain's Resume"
+                className="group flex items-center gap-2.5 px-7 py-4 text-zinc-300 text-md rounded-lg border border-zinc-800 bg-zinc-900/30 hover:text-cyan-400 hover:bg-zinc-900/80 hover:border-cyan-500/40 transition-all duration-300"
               >
-                &lt;Download Resume /&gt;
+                <FileText className="w-4 h-4 text-zinc-400 group-hover:text-cyan-400 transition-colors" />
+                <span>Resume</span>
               </a>
             </div>
           </Reveal>

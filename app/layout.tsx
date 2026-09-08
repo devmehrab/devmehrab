@@ -3,11 +3,7 @@ import { Outfit, Fira_Code, Geist } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-import SmoothScroll from "@/components/ui/SmoothScroll";
-import CustomCursor from "@/components/ui/CustomCursor";
-import FloatingChatToggle from "@/components/ui/FloatingChatToggle";
+import SiteShell from "@/components/layout/SiteShell";
 import { cn } from "@/lib/utils";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
@@ -35,18 +31,19 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Mehrab Hossain | Best Next.js Developer in Dhaka",
+    default: "Mehrab Hossain | Full-Stack Developer & Next.js Specialist",
     template: "%s | Mehrab Hossain",
   },
   description:
-    "Mehrab Hossain (devmehrab) is a top-tier Full-Stack Developer in Dhaka, Bangladesh, specializing in Next.js, MERN stack, and high-performance web apps.",
+    "Mehrab Hossain (devmehrab) is a Full-Stack Developer based in Dhaka, Bangladesh, specializing in Next.js, React, Node.js, TypeScript, and high-performance web architecture.",
   keywords: [
     "Mehrab Hossain",
     "devmehrab",
-    "Best Next.js Developer Dhaka",
-    "Full-Stack Developer Bangladesh",
+    "Full-Stack Developer",
+    "Next.js Developer Dhaka",
+    "React Developer Bangladesh",
+    "TypeScript Developer",
     "MERN Stack Expert",
-    "Next.js Dhaka",
   ],
   alternates: {
     canonical: siteUrl,
@@ -98,7 +95,7 @@ export default function RootLayout({
       addressCountry: "BD",
     },
     sameAs: [
-      "https://github.com/DevMehrab",
+      "https://github.com/devmehrab",
       "https://linkedin.com/in/devmehrab",
       "https://www.facebook.com/dev.mehrabhossain",
       "https://twitter.com/devmehrab",
@@ -107,12 +104,14 @@ export default function RootLayout({
       "Next.js",
       "React",
       "Node.js",
+      "Express",
+      "MongoDB",
       "TypeScript",
       "MERN Stack",
       "SEO",
     ],
     description:
-      "The best Next.js developer in Dhaka, Bangladesh, building scalable web applications.",
+      "Full-Stack Developer specializing in Next.js, React, and scalable modern web architecture.",
   };
 
   return (
@@ -130,17 +129,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {/* Make sure these UI components internally use "use client" if they need it */}
-        <CustomCursor />
-        <SmoothScroll />
-        <Navbar />
-
-        <main className="relative flex flex-col min-h-screen">{children}</main>
-
-        {/* Here is our new separated client component */}
-        <FloatingChatToggle />
-
-        <Footer />
+        <SiteShell>{children}</SiteShell>
       </body>
     </html>
   );

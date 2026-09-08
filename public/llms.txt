@@ -9,14 +9,32 @@
 
 ## Tech Stack & Expertise
 - **Frontend:** Next.js (App Router), TypeScript, Tailwind CSS, Framer Motion.
-- **Backend:** Node.js, MongoDB, Supabase.
+- **Backend:** Node.js, Express.js, MongoDB, Redis, Socket.IO, LangChain, Supabase.
 
 ## Featured Projects
-### Atenier | E-commerce
-- **Description:** A full-stack SEO optimised luxury e-commerce website with a custom admin dashboard for inventory management and order processing.
-- **Tech:** Next.js, Tailwind.
+
+### Campus Connect
+- **Description:** University social networking monorepo with an Express REST API, Next.js frontend, real-time Socket.IO messaging, and an integrated AI/RAG service using LangChain, Google Gemini, and MongoDB Atlas Vector Search.
+- **Tech:** Next.js, Express.js, TypeScript, MongoDB, Redis, Socket.IO, Gemini AI, LangChain, Docker.
+- **Repo:** https://github.com/devmehrab/campus-connect
+- **URL:** https://bup-cse.netlify.app
+
+### Atenier
+- **Description:** Multi-tenant real estate SaaS platform providing isolated public property storefronts, customizable agency branding, and robust administrative management dashboards with server-side tenant isolation.
+- **Tech:** Next.js, TypeScript, Tailwind CSS, MongoDB, Cloudinary, Zod, JWT.
+- **Repo:** https://github.com/devmehrab/atenier-tech
 - **URL:** https://atenier.com
-- **Outcome:** SEO optimised and faster load time
+
+### Make Your Dev CV
+- **Description:** AI-powered developer CV builder and job-matching platform combining structured profile management with a customizable CV editor, ATS optimization, and intelligent job description matching via OpenRouter.
+- **Tech:** Next.js, TypeScript, Tailwind CSS, MongoDB, OpenRouter, React.
+- **Repo:** https://github.com/devmehrab/make-your-dev-cv
+- **URL:** https://makeyour.dev.cv
+
+### Investor Portal
+- **Description:** Modern investor platform enabling fractional ownership via digital tokens, portfolio monitoring, and secure payment processing with Stripe.
+- **Tech:** Next.js, TypeScript, Tailwind CSS, MongoDB, Stripe.
+- **URL:** https://investment.digital-trading-platforms.com
 
 ## How to reach me
 Available for high-impact development roles and specialized consulting. Email: dev.mehrabhossain@gmail.com

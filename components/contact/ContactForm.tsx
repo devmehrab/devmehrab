@@ -7,10 +7,12 @@ import { submitContactForm } from "@/actions/contact";
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrorMessage(null);
 
     const formData = new FormData(e.currentTarget);
     const result = await submitContactForm(formData);
@@ -19,6 +21,9 @@ export default function ContactForm() {
       setIsSubmitted(true);
       (e.target as HTMLFormElement).reset();
       setTimeout(() => setIsSubmitted(false), 5000);
+    } else {
+      setErrorMessage(result.error || "Transmission failed. Please try again.");
+      setTimeout(() => setErrorMessage(null), 6000);
     }
 
     setIsSubmitting(false);
@@ -114,6 +119,12 @@ export default function ContactForm() {
         {isSubmitted && (
           <span className="text-emerald-400 text-sm font-mono animate-pulse">
             Transmission successful.
+          </span>
+        )}
+
+        {errorMessage && (
+          <span className="text-rose-400 text-sm font-mono">
+            {errorMessage}
           </span>
         )}
       </div>

@@ -13,11 +13,6 @@ export default function Footer() {
                 <MapPin className="w-3.5 h-3.5 text-cyan-500" />
                 <span>Dhaka, Bangladesh</span>
               </div>
-              <div className="hidden sm:block w-[1px] h-4 bg-zinc-800" />
-              <div className="flex items-center gap-2">
-                <Activity className="w-3.5 h-3.5 text-cyan-500" />
-                <span>Runtime: Active</span>
-              </div>
             </div>
 
             <p className="font-mono text-sm text-zinc-600">
