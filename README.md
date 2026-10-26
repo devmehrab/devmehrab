@@ -11,7 +11,7 @@
 
   <!-- Connect / Social Badges -->
   <p align="center">
-    <a href="https://linkedin.com/in/YOUR_LINKEDIN_USERNAME" target="_blank">
+    <a href="https://linkedin.com/in/devmehrab" target="_blank">
       <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
     </a>
     <a href="mailto:dev.mehrabhossain@gmail.com">
@@ -23,13 +23,13 @@
   </p>
 
   <!-- Profile View Counter -->
-  <img src="https://komarev.com/ghpvc/?username=YOUR_GITHUB_USERNAME&style=flat-square&color=00f0ff" alt="Profile Views" />
+  <img src="https://komarev.com/ghpvc/?username=devmehrab&style=flat-square&color=00f0ff" alt="Profile Views" />
 
 </div>
 
 ---
 
-### ⚡ Quick Terminal Snapshot
+### About Me
 
 ```yaml
 engineer:
@@ -44,13 +44,13 @@ engineer:
   environment: [TypeScript, Next.js, Node.js, Express, MongoDB, Docker]
 ```
 
-- 🔭 **Currently Building:** Enterprise-grade stakeholder portals, investment stake-management workflows, and custom payment automations at **IMS Systems**.
-- 🧠 **Exploring:** Advanced vector retrieval algorithms, document semantic chunking, and distributed cache invalidation strategies.
-- 💬 **Ask Me About:** MERN stack, Next.js App Router, Dockerized micro-services, background workers, and real-time WebSockets.
+**Currently Building:** Enterprise-grade stakeholder portals, investment stake-management workflows, and custom payment automations at **IMS Systems**.
+- **Exploring:** Advanced vector retrieval algorithms, document semantic chunking, and distributed cache invalidation strategies.
+- **Ask Me About:** MERN stack, Next.js App Router, Dockerized micro-services, background workers, and real-time WebSockets.
 
 ---
 
-### 🛠️ Tech Stack & Ecosystem
+### Tech Stack & Ecosystem
 
 <div align="center">
 
@@ -64,73 +64,26 @@ engineer:
 | **DevOps & Infrastructure** | <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white"/> <img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white"/> <img src="https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white"/> <img src="https://img.shields.io/badge/Stripe_API-635BFF?style=flat-square&logo=stripe&logoColor=white"/> |
 
 </div>
-
+ 
 ---
 
-### 🚀 Featured Engineering Projects
-
-<table>
-  <tr>
-    <td width="50%" valign="top">
-      <h3 align="center"><b>🏫 Campus Connect</b></h3>
-      <p align="center"><i>University Social Network & AI RAG Assistant (Monorepo)</i></p>
-      <ul>
-        <li>Implemented full social graph: real-time feeds, post threads, notifications, and instant messaging via <b>Socket.IO</b>.</li>
-        <li>Architected an end-to-end RAG pipeline using <b>LangChain</b>, <b>Google Gemini</b>, and <b>LlamaParse</b> for PDF document semantic querying.</li>
-        <li>Decoupled long-running background tasks and notification delivery with <b>BullMQ</b>, <b>Redis</b>, and <b>Docker</b>.</li>
-      </ul>
-      <p align="center">
-        <code>TypeScript</code> • <code>Next.js</code> • <code>Express.js</code> • <code>Redis</code> • <code>BullMQ</code> • <code>Docker</code>
-      </p>
-    </td>
-    <td width="50%" valign="top">
-      <h3 align="center"><b>🏢 Atenier</b></h3>
-      <p align="center"><i>Multi-Tenant Real Estate SaaS Platform</i></p>
-      <ul>
-        <li>Engineered tenant isolation using organization IDs, session tokens, and strict role-based access control (RBAC).</li>
-        <li>Delivered separate public storefronts alongside rich agency management consoles for team members and agents.</li>
-        <li>Integrated dynamic property inventory tracking, lead aggregation, and Cloudinary media optimization.</li>
-      </ul>
-      <p align="center">
-        <code>Next.js App Router</code> • <code>MongoDB / Mongoose</code> • <code>Zod</code> • <code>Tailwind CSS</code>
-      </p>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" valign="top">
-      <h3 align="center"><b>📄 Make Your Dev CV</b></h3>
-      <p align="center"><i>AI-Powered Resume Builder & Semantic Job-Match Engine</i></p>
-      <ul>
-        <li>Developed automated CV optimization workflows and in-editor contextual writing assistance via <b>OpenRouter</b>.</li>
-        <li>Built an intelligent scoring engine that maps applicant competencies against job description requirements.</li>
-        <li>Engineered client-side and server-side document compilation pipelines producing print-ready PDF and DOCX files.</li>
-      </ul>
-      <p align="center">
-        <code>Next.js</code> • <code>TypeScript</code> • <code>OpenRouter AI</code> • <code>Tailwind CSS</code> • <code>Dynamic PDF/DOCX</code>
-      </p>
-    </td>
-  </tr>
-</table>
-
----
-
-### 📊 GitHub Metrics & Insights
+### GitHub Metrics & Insights
 
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=YOUR_GITHUB_USERNAME&show_icons=true&theme=tokyonight&hide_border=true&count_private=true" alt="GitHub Stats" width="48.5%" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=YOUR_GITHUB_USERNAME&layout=compact&theme=tokyonight&hide_border=true" alt="Top Languages" width="48.5%" />
+  <img src="https://github-readme-stats.vercel.app/api?username=devmehrab&show_icons=true&theme=tokyonight&hide_border=true&count_private=true" alt="GitHub Stats" width="48.5%" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=devmehrab&layout=compact&theme=tokyonight&hide_border=true" alt="Top Languages" width="48.5%" />
 </div>
 
 <div align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=YOUR_GITHUB_USERNAME&theme=tokyonight&hide_border=true" alt="GitHub Streak" width="98%" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=devmehrab&theme=tokyonight&hide_border=true" alt="GitHub Streak" width="98%" />
 </div>
 
 ---
 
-### 📈 Contribution Activity
+### Contribution Activity
 
 <p align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=YOUR_GITHUB_USERNAME&theme=tokyo-night&hide_border=true&area=true" width="100%" alt="Activity Graph" />
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=devmehrab&theme=tokyo-night&hide_border=true&area=true" width="100%" alt="Activity Graph" />
 </p>
 
 ---
