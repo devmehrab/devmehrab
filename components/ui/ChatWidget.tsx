@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import { Send, X, Bot, User, Sparkles } from "lucide-react"; // Install lucide-react if not already
+import { ArrowUp, X, Loader2 } from "lucide-react";
 
 export default function ChatWidget({ onClose }: { onClose: () => void }) {
   const [messages, setMessages] = useState<{ role: string; content: string }[]>(
@@ -10,7 +10,6 @@ export default function ChatWidget({ onClose }: { onClose: () => void }) {
   const [loading, setLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // Auto-scroll to bottom when messages change
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
@@ -22,8 +21,6 @@ export default function ChatWidget({ onClose }: { onClose: () => void }) {
     if (!input.trim() || loading) return;
 
     const userMsg = { role: "user", content: input };
-
-    // Save current messages to history BEFORE adding the new one
     const historyToSend = [...messages];
 
     setMessages((prev) => [...prev, userMsg]);
@@ -42,56 +39,43 @@ export default function ChatWidget({ onClose }: { onClose: () => void }) {
 
       const data = await res.json();
       setMessages((prev) => [...prev, { role: "model", content: data.text }]);
-    } catch (err) {
+    } catch {
       setMessages((prev) => [
         ...prev,
-        { role: "model", content: "I hit a snag. Try again?" },
+        { role: "model", content: "Something went wrong. Please try again." },
       ]);
     } finally {
       setLoading(false);
     }
   };
+
   return (
-    <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 w-[calc(100vw-32px)] sm:w-[400px] h-[550px] max-h-[80vh] flex flex-col z-[100] overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950/80 backdrop-blur-xl shadow-[0_0_50px_-12px_rgba(6,182,212,0.2)] animate-in fade-in zoom-in duration-300">
-      {/* Header: Dark Glassmorphism */}
-      <div className="p-4 border-b border-zinc-800 bg-zinc-900/50 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="relative">
-            <div className="p-2 bg-cyan-500/10 rounded-lg border border-cyan-500/20">
-              <Bot className="w-5 h-5 text-cyan-400" />
-            </div>
-            <span className="absolute -top-1 -right-1 flex h-3 w-3">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
-            </span>
-          </div>
-          <div>
-            <h3 className="text-sm font-bold text-zinc-100 leading-none">
-              AI Mehrab
-            </h3>
-            <span className="text-[10px] text-zinc-500 uppercase tracking-widest font-mono">
-              Online
-            </span>
-          </div>
+    <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 w-[calc(100vw-32px)] sm:w-[380px] h-[500px] max-h-[80vh] flex flex-col z-50 overflow-hidden rounded-3xl border border-white/[0.1] bg-[#121214]/95 backdrop-blur-2xl shadow-2xl">
+      {/* Header */}
+      <div className="px-5 py-4 border-b border-white/[0.08] flex items-center justify-between">
+        <div>
+          <h3 className="text-sm font-semibold text-[#f5f5f7]">Assistant</h3>
+          <p className="text-xs text-[#86868b]">Ask about work & projects</p>
         </div>
         <button
           onClick={onClose}
-          className="p-2 hover:bg-zinc-800 rounded-full text-zinc-500 hover:text-zinc-200 transition-colors"
+          className="p-1.5 hover:bg-white/[0.08] rounded-full text-[#86868b] hover:text-white transition-colors"
+          aria-label="Close Assistant"
         >
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4" />
         </button>
       </div>
 
-      {/* Chat Area: Custom Scrollbar & Animated Messages */}
+      {/* Messages */}
       <div
         ref={scrollRef}
-        className="flex-1 overflow-y-auto p-4 space-y-6 scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent"
+        className="flex-1 overflow-y-auto p-4 space-y-3"
       >
         {messages.length === 0 && (
-          <div className="h-full flex flex-col items-center justify-center text-center p-8 space-y-4">
-            <Sparkles className="w-8 h-8 text-zinc-700 animate-pulse" />
-            <p className="text-sm text-zinc-500 font-mono">
-              Ask me anything and have a conversation!
+          <div className="h-full flex flex-col items-center justify-center text-center p-6 text-[#86868b]">
+            <p className="text-xs max-w-xs leading-relaxed">
+              Ask any question about Mehrab’s technical background, projects, or
+              availability.
             </p>
           </div>
         )}
@@ -99,22 +83,13 @@ export default function ChatWidget({ onClose }: { onClose: () => void }) {
         {messages.map((m, i) => (
           <div
             key={i}
-            className={`flex items-start gap-3 ${m.role === "user" ? "flex-row-reverse" : ""}`}
+            className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}
           >
             <div
-              className={`p-1.5 rounded-md border ${m.role === "user" ? "bg-zinc-100 border-white" : "bg-zinc-900 border-zinc-800"}`}
-            >
-              {m.role === "user" ? (
-                <User className="w-3 h-3 text-zinc-950" />
-              ) : (
-                <Bot className="w-3 h-3 text-cyan-400" />
-              )}
-            </div>
-            <div
-              className={`relative px-4 py-3 rounded-2xl text-sm max-w-[85%] leading-relaxed ${
+              className={`max-w-[85%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed ${
                 m.role === "user"
-                  ? "bg-cyan-600 text-white rounded-tr-none shadow-[0_10px_20px_-10px_rgba(8,145,178,0.3)]"
-                  : "bg-zinc-900/50 text-zinc-300 border border-zinc-800 rounded-tl-none"
+                  ? "bg-[#0071e3] text-white rounded-br-sm"
+                  : "bg-[#1c1c1e] text-[#f5f5f7] border border-white/[0.08] rounded-bl-sm"
               }`}
             >
               {m.content}
@@ -123,42 +98,37 @@ export default function ChatWidget({ onClose }: { onClose: () => void }) {
         ))}
 
         {loading && (
-          <div className="flex items-center gap-3">
-            <div className="p-1.5 rounded-md bg-zinc-900 border border-zinc-800">
-              <Bot className="w-3 h-3 text-cyan-400" />
-            </div>
-            <div className="flex gap-1.5 p-3 bg-zinc-900/50 border border-zinc-800 rounded-2xl rounded-tl-none">
-              <span className="w-1.5 h-1.5 bg-cyan-500 rounded-full animate-bounce [animation-delay:-0.3s]"></span>
-              <span className="w-1.5 h-1.5 bg-cyan-500 rounded-full animate-bounce [animation-delay:-0.15s]"></span>
-              <span className="w-1.5 h-1.5 bg-cyan-500 rounded-full animate-bounce"></span>
+          <div className="flex justify-start">
+            <div className="px-4 py-3 rounded-2xl rounded-bl-sm bg-[#1c1c1e] border border-white/[0.08] flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#86868b] animate-bounce [animation-delay:-0.3s]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#86868b] animate-bounce [animation-delay:-0.15s]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#86868b] animate-bounce" />
             </div>
           </div>
         )}
       </div>
 
-      {/* Footer: Clean Input Area */}
+      {/* Input */}
       <form
         onSubmit={sendMessage}
-        className="p-4 bg-zinc-950 border-t border-zinc-800"
+        className="p-3 bg-[#121214] border-t border-white/[0.08]"
       >
         <div className="relative flex items-center">
           <input
-            className="w-full bg-zinc-900 border border-zinc-800 focus:border-cyan-500/50 text-zinc-200 text-sm rounded-xl py-3 pl-4 pr-12 outline-none transition-all placeholder:text-zinc-600"
+            className="w-full bg-[#1c1c1e] border border-white/[0.08] focus:border-white/[0.25] text-[#f5f5f7] text-sm rounded-full py-2.5 pl-4 pr-11 outline-none transition-colors placeholder:text-[#6e6e73]"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Type a message..."
+            placeholder="Ask a question..."
           />
           <button
             type="submit"
             disabled={!input.trim() || loading}
-            className="absolute right-2 p-2 bg-cyan-500 hover:bg-cyan-400 disabled:bg-zinc-800 disabled:text-zinc-600 text-zinc-950 rounded-lg transition-all active:scale-95"
+            aria-label="Send message"
+            className="absolute right-1.5 p-1.5 bg-white text-black hover:bg-[#e5e5ea] disabled:opacity-30 rounded-full transition-all"
           >
-            <Send className="w-4 h-4" />
+            <ArrowUp className="w-3.5 h-3.5" />
           </button>
         </div>
-        <p className="text-[9px] text-center text-zinc-600 mt-3 uppercase tracking-tight">
-          AI can make mistakes. Verify important information.
-        </p>
       </form>
     </div>
   );

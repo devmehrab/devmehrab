@@ -4,7 +4,6 @@ import { usePathname } from "next/navigation";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import SmoothScroll from "@/components/ui/SmoothScroll";
-import CustomCursor from "@/components/ui/CustomCursor";
 import FloatingChatToggle from "@/components/ui/FloatingChatToggle";
 
 export default function SiteShell({
@@ -21,7 +20,6 @@ export default function SiteShell({
 
   return (
     <>
-      <CustomCursor />
       <SmoothScroll />
       <Navbar />
 

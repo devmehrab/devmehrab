@@ -1,29 +1,22 @@
 import type { Metadata, Viewport } from "next";
-import { Outfit, Fira_Code, Geist } from "next/font/google";
+import { Figtree } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
 import SiteShell from "@/components/layout/SiteShell";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
-
-const outfit = Outfit({
+const figtree = Figtree({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
-});
-
-const firaCode = Fira_Code({
-  subsets: ["latin"],
-  variable: "--font-fira-code",
-  display: "swap",
+  weight: ["400", "500", "600", "700"],
 });
 
 const siteUrl = "https://devmehrab.com";
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0a",
+  themeColor: "#000000",
   width: "device-width",
   initialScale: 1,
 };
@@ -117,9 +110,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("dark scroll-smooth", outfit.variable, firaCode.variable)}
+      className={cn("dark scroll-smooth", figtree.variable)}
     >
-      <body className="font-sans bg-[#0a0a0a] text-zinc-400 antialiased min-h-screen flex flex-col">
+      <body className="font-sans bg-black text-[#86868b] antialiased min-h-screen flex flex-col selection:bg-neutral-800 selection:text-white">
         <Script
           src="https://cloud.umami.is/script.js"
           data-website-id="4b8d7ecd-4782-4cc9-b668-c492f20dc407"

@@ -3,6 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { client, isSanityConfigured } from "@/sanity/lib/client";
@@ -191,17 +192,24 @@ export default async function BlogPost({
   };
 
   return (
-    <article className="max-w-3xl mx-auto px-6 py-32 w-full">
+    <article className="max-w-2xl mx-auto px-6 py-28 md:py-36 w-full text-[#f5f5f7]">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <header className="mb-12 border-b border-zinc-800 pb-8">
-        <h1 className="text-4xl md:text-5xl font-bold text-zinc-100 leading-normal md:leading-18 mb-4">
+      <header className="mb-12 border-b border-white/[0.08] pb-8">
+        <Link
+          href="/blog"
+          className="inline-flex items-center gap-1.5 text-xs font-medium text-[#86868b] hover:text-white mb-8 transition-colors"
+        >
+          &larr; Back to writing
+        </Link>
+
+        <h1 className="text-3xl sm:text-5xl font-bold text-[#f5f5f7] tracking-tight mb-4">
           {title}
         </h1>
-        <div className="flex items-center gap-4 text-zinc-500 font-mono text-sm">
+        <div className="flex items-center gap-2 text-[#86868b] text-xs">
           <time dateTime={publishedAt}>
             {new Date(publishedAt).toLocaleDateString("en-US", {
               month: "long",
@@ -209,12 +217,12 @@ export default async function BlogPost({
               year: "numeric",
             })}
           </time>
-          <span>//</span>
-          <span>By {authorName}</span>
+          <span>&bull;</span>
+          <span>{authorName}</span>
         </div>
 
         {post.type === "sanity" && post.data.mainImage?.asset?._ref && (
-          <div className="relative aspect-video w-full mt-8 rounded-xl overflow-hidden border border-zinc-800">
+          <div className="relative aspect-video w-full mt-8 rounded-2xl overflow-hidden border border-white/[0.08]">
             <Image
               src={urlForImage(post.data.mainImage).url()}
               alt={post.data.mainImage.alt || title}

@@ -3,22 +3,22 @@ import path from "path";
 import matter from "gray-matter";
 import Link from "next/link";
 import { Metadata } from "next";
-import { TerminalSquare, FolderGit2, Calendar, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { client, isSanityConfigured } from "@/sanity/lib/client";
 import { POSTS_QUERY } from "@/sanity/lib/queries";
 
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Engineering Blog & Tutorials | Mehrab Hossain",
+  title: "Writing | Mehrab Hossain",
   description:
-    "Deep-dive technical articles, tutorials, and case studies on Next.js, React, and Full-Stack MERN development by Mehrab Hossain in Dhaka.",
+    "Articles on Next.js, React, TypeScript, and web engineering by Mehrab Hossain.",
   alternates: {
     canonical: "https://devmehrab.com/blog",
   },
   openGraph: {
-    title: "Engineering Blog | Mehrab Hossain",
-    description: "Deep-dive technical articles on Next.js and MERN stack.",
+    title: "Writing | Mehrab Hossain",
+    description: "Articles on Next.js, React, and web engineering.",
     url: "https://devmehrab.com/blog",
     type: "website",
   },
@@ -109,121 +109,71 @@ export default async function BlogHub() {
   };
 
   return (
-    <section className="relative py-32 w-full bg-zinc-950 min-h-screen">
+    <div className="relative py-28 md:py-36 w-full bg-black min-h-screen text-[#f5f5f7]">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <div className="max-w-5xl mx-auto px-6 w-full">
-        <header className="mb-20">
-          <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full bg-zinc-900/50 border border-zinc-800">
-            <TerminalSquare className="w-4 h-4 text-cyan-400" />
-            <span className="text-zinc-400 font-mono text-xs uppercase tracking-widest">
-              Knowledge Base
-            </span>
-          </div>
-          <h1 className="text-5xl md:text-6xl font-bold text-zinc-100 tracking-tight mb-6">
-            Engineering <span className="text-cyan-500">Log.</span>
+      <div className="max-w-4xl mx-auto px-6 w-full">
+        <header className="mb-16">
+          <p className="text-xs font-semibold uppercase tracking-wider text-[#86868b] mb-3">
+            Articles
+          </p>
+          <h1 className="text-4xl sm:text-6xl font-bold text-[#f5f5f7] tracking-tight mb-4">
+            Writing.
           </h1>
-          <p className="text-xl text-zinc-400 max-w-2xl leading-relaxed">
-            Technical deep dives, architectural decisions, and performance
-            optimization strategies for modern web applications.
+          <p className="text-base sm:text-lg text-[#86868b] max-w-xl leading-relaxed">
+            Technical notes on Next.js, web performance, and software
+            engineering.
           </p>
         </header>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          <div className="lg:col-span-8 space-y-8">
-            <h2 className="text-2xl font-bold text-zinc-100 flex items-center gap-3 mb-8 border-b border-zinc-800 pb-4">
-              <Calendar className="w-6 h-6 text-zinc-500" />
-              Latest Transmissions
-            </h2>
-
-            {posts.map((post) => (
-              <article
-                key={post.slug}
-                className="group relative flex flex-col p-6 sm:p-8 rounded-2xl bg-zinc-900/30 border border-zinc-800 hover:border-cyan-500/50 transition-all duration-300"
+        <div className="space-y-4">
+          {posts.map((post) => (
+            <article
+              key={post.slug}
+              className="group relative flex flex-col p-6 sm:p-8 rounded-3xl bg-[#121214] border border-white/[0.08] hover:border-white/[0.18] transition-all duration-300"
+            >
+              <Link
+                href={`/blog/${post.slug}`}
+                className="absolute inset-0 z-10"
               >
-                <Link
-                  href={`/blog/${post.slug}`}
-                  className="absolute inset-0 z-10"
-                >
-                  <span className="sr-only">Read {post.title}</span>
-                </Link>
+                <span className="sr-only">Read {post.title}</span>
+              </Link>
 
-                <div className="flex flex-wrap gap-2 mb-4 relative z-20">
-                  {post.tags?.map((tag: string) => (
-                    <span
-                      key={tag}
-                      className="px-2.5 py-1 text-xs font-mono text-cyan-400 bg-cyan-500/10 rounded-md border border-cyan-500/20"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+              <div className="flex items-center gap-3 mb-3 text-xs text-[#86868b]">
+                <time dateTime={post.publishedAt}>
+                  {new Date(post.publishedAt).toLocaleDateString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                    year: "numeric",
+                  })}
+                </time>
+                {post.tags && post.tags.length > 0 && (
+                  <>
+                    <span>&bull;</span>
+                    <span className="text-[#86868b]">{post.tags[0]}</span>
+                  </>
+                )}
+              </div>
 
-                <h3 className="text-2xl font-bold text-zinc-100 mb-3 group-hover:text-cyan-400 transition-colors">
-                  {post.title}
-                </h3>
-
-                <p className="text-zinc-400 leading-relaxed mb-6">
-                  {post.description}
-                </p>
-
-                <div className="mt-auto flex items-center justify-between text-sm">
-                  <time
-                    className="text-zinc-500 font-mono"
-                    dateTime={post.publishedAt}
-                  >
-                    {new Date(post.publishedAt).toLocaleDateString(
-                      "en-US",
-                      {
-                        month: "short",
-                        day: "2-digit",
-                        year: "numeric",
-                      },
-                    )}
-                  </time>
-                  <span className="text-cyan-500 font-mono flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity -translate-x-2 group-hover:translate-x-0 duration-300">
-                    Read Article <ArrowRight className="w-4 h-4" />
-                  </span>
-                </div>
-              </article>
-            ))}
-          </div>
-
-          <aside className="lg:col-span-4 mt-0 md:mt-20">
-            <div className="sticky top-32 p-6 rounded-2xl bg-zinc-900/50 border border-zinc-800">
-              <h2 className="text-xl font-bold text-zinc-100 flex items-center gap-3 mb-6">
-                <FolderGit2 className="w-5 h-5 text-cyan-400" />
-                Explore by Topic
+              <h2 className="text-xl sm:text-2xl font-semibold text-[#f5f5f7] mb-2 group-hover:text-white transition-colors">
+                {post.title}
               </h2>
 
-              <div className="flex flex-col gap-2">
-                {allTags.map((tag) => {
-                  const count = posts.filter((p) =>
-                    p.tags?.includes(tag),
-                  ).length;
+              <p className="text-sm text-[#86868b] leading-relaxed mb-6">
+                {post.description}
+              </p>
 
-                  return (
-                    <div
-                      key={tag}
-                      className="flex items-center justify-between p-3 rounded-lg hover:bg-zinc-800/50 transition-colors border border-transparent hover:border-zinc-700 group cursor-default"
-                    >
-                      <span className="text-zinc-300 font-mono text-sm group-hover:text-cyan-400 transition-colors">
-                        #{tag.toLowerCase().replace(/\s+/g, "-")}
-                      </span>
-                      <span className="text-xs text-zinc-500 font-mono bg-zinc-950 px-2 py-1 rounded-md border border-zinc-800">
-                        {count} {count === 1 ? "post" : "posts"}
-                      </span>
-                    </div>
-                  );
-                })}
+              <div className="mt-auto flex items-center gap-1.5 text-xs font-medium text-[#f5f5f7]">
+                <span>Read article</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </div>
-            </div>
-          </aside>
+            </article>
+          ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 }

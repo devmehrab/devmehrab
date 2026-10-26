@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
-import { Menu, X, TerminalSquare, Github } from "lucide-react";
+import { Menu, X, Github } from "lucide-react";
 import { navLinks } from "@/config/nav";
 import MobileMenu from "../navbar/MobileMenu";
 
@@ -12,81 +12,62 @@ export default function Navbar() {
 
   const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, "change", (latest) => {
-    const shouldBeScrolled = latest > 50;
-    if (isScrolled !== shouldBeScrolled) {
-      setIsScrolled(shouldBeScrolled);
-    }
+    setIsScrolled(latest > 20);
   });
 
   return (
     <>
-      <motion.nav
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed top-0 inset-x-0 z-50 flex justify-center p-4 md:p-6 pointer-events-none"
+      <header
+        className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+          isScrolled
+            ? "bg-black/75 backdrop-blur-xl border-b border-white/[0.08]"
+            : "bg-transparent border-b border-transparent"
+        }`}
       >
-        <div
-          className={`pointer-events-auto flex items-center justify-between transition-all duration-500 ease-in-out ${
-            isScrolled
-              ? "w-full max-w-4xl bg-zinc-950/80 backdrop-blur-xl border border-zinc-800/60 shadow-[0_0_30px_rgba(0,0,0,0.5)] py-3 px-4 rounded-2xl"
-              : "w-full max-w-7xl bg-transparent py-4 px-2 rounded-none border-transparent"
-          }`}
-        >
+        <div className="max-w-5xl mx-auto px-6 h-14 md:h-16 flex items-center justify-between">
           <a
             href="/"
-            className="group flex items-center gap-3 px-2 transition-opacity hover:opacity-80"
+            className="text-sm md:text-[15px] font-semibold text-[#f5f5f7] tracking-tight hover:opacity-80 transition-opacity"
           >
-            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-zinc-900 border border-zinc-800 group-hover:border-cyan-500/50 transition-colors">
-              <TerminalSquare className="w-4 h-4 text-cyan-400" />
-            </div>
-            <div className="flex flex-col hidden sm:flex">
-              <span className="font-mono text-xs font-bold text-zinc-100 tracking-wider">
-                MEHRAB HOSSAIN
-              </span>
-              <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-widest">
-                DEVMEHRAB
-              </span>
-            </div>
+            Mehrab Hossain
           </a>
 
-          <div className="hidden md:flex items-center gap-1 p-1 bg-zinc-900/50 border border-zinc-800/50 rounded-lg backdrop-blur-md">
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-7">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="group relative px-4 py-2 text-sm font-mono rounded-md text-zinc-400 hover:text-zinc-100 transition-colors overflow-hidden"
+                className="text-[13px] text-[#86868b] hover:text-[#f5f5f7] transition-colors font-medium tracking-tight"
               >
-                <div className="absolute inset-0 bg-zinc-800/50 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out z-0" />
-                <span className="relative z-10 flex items-center gap-2">
-                  <span className="text-cyan-500/50 text-xs">{link.num}.</span>
-                  {link.name}
-                </span>
+                {link.name}
               </a>
             ))}
-          </div>
+          </nav>
 
-          <div className="hidden md:flex items-center">
+          {/* Right Action */}
+          <div className="hidden md:flex items-center gap-3">
             <a
               href="https://github.com/DevMehrab"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-2 px-4 py-2 text-sm font-mono text-cyan-400 bg-cyan-500/10 border border-cyan-500/30 rounded-lg hover:bg-cyan-500 hover:text-zinc-950 transition-all duration-300"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium text-[#f5f5f7] bg-white/[0.06] hover:bg-white/[0.12] border border-white/[0.08] transition-all"
             >
-              <Github className="w-4 h-4" />
-              Github
+              <Github className="w-3.5 h-3.5" />
+              <span>GitHub</span>
             </a>
           </div>
 
+          {/* Mobile Menu Button */}
           <button
             aria-label="Toggle Navigation Menu"
-            className="md:hidden relative z-50 p-2 text-zinc-400 hover:text-cyan-400 transition-colors bg-zinc-900/50 border border-zinc-800/50 rounded-lg"
+            className="md:hidden p-2 text-[#86868b] hover:text-[#f5f5f7] transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
-      </motion.nav>
+      </header>
 
       <MobileMenu
         isOpen={mobileMenuOpen}

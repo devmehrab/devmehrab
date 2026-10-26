@@ -11,7 +11,6 @@ interface MobileMenuProps {
 }
 
 export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
-  // Isolate the body scroll lock logic specifically to the mobile menu
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -27,52 +26,38 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.3 }}
-          className="fixed inset-0 z-40 flex flex-col justify-center px-6 bg-zinc-950/95 backdrop-blur-2xl"
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.2 }}
+          className="fixed inset-0 z-40 flex flex-col justify-center px-8 bg-black/95 backdrop-blur-2xl"
         >
-          {/* Optimized background glow */}
-          <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full pointer-events-none"
-            style={{
-              background:
-                "radial-gradient(circle, rgba(6, 182, 212, 0.1) 0%, rgba(9, 9, 11, 0) 70%)",
-            }}
-          />
-
-          <div className="relative z-10 flex flex-col gap-8">
+          <div className="flex flex-col gap-6 max-w-sm w-full mx-auto">
             {navLinks.map((link, i) => (
               <motion.a
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.1 * i + 0.1 }}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.05 * i }}
                 key={link.name}
                 href={link.href}
                 onClick={onClose}
-                className="group flex flex-col border-b border-zinc-800 pb-4"
+                className="text-2xl font-medium text-[#f5f5f7] hover:text-white transition-colors"
               >
-                <span className="font-mono text-sm text-cyan-500 mb-2">
-                  {link.num} //
-                </span>
-                <span className="text-4xl font-bold text-zinc-300 group-hover:text-cyan-400 group-hover:translate-x-2 transition-all duration-300">
-                  {link.name}
-                </span>
+                {link.name}
               </motion.a>
             ))}
 
             <motion.a
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
+              transition={{ delay: 0.25 }}
               href="https://github.com/DevMehrab"
               target="_blank"
               onClick={onClose}
-              className="inline-flex items-center justify-center gap-3 w-full py-4 mt-8 bg-zinc-100 text-zinc-950 font-bold rounded-xl"
+              className="inline-flex items-center justify-center gap-2.5 w-full py-3.5 mt-4 bg-white text-black font-medium text-sm rounded-full transition-opacity hover:opacity-90"
             >
-              <Github className="w-5 h-5" />
-              View Github
+              <Github className="w-4 h-4" />
+              <span>GitHub</span>
             </motion.a>
           </div>
         </motion.div>

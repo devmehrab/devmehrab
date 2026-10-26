@@ -2,33 +2,28 @@ import { Mail, ArrowUpRight } from "lucide-react";
 
 export default function DirectRoute() {
   return (
-    <div className="h-full flex flex-col justify-center p-8 rounded-2xl bg-zinc-900/10 border border-zinc-800/30">
-      <div className="flex items-center gap-3 mb-6">
-        <div className="p-2 rounded-lg bg-zinc-900 border border-zinc-800">
-          <Mail className="w-5 h-5 text-zinc-400" />
+    <div className="h-full flex flex-col justify-between p-6 sm:p-8 rounded-3xl bg-[#121214] border border-white/[0.08]">
+      <div>
+        <div className="w-10 h-10 rounded-2xl bg-white/[0.05] border border-white/[0.08] flex items-center justify-center mb-6">
+          <Mail className="w-4 h-4 text-[#f5f5f7]" />
         </div>
-        <div>
-          <h4 className="text-zinc-100 font-semibold">Direct Route</h4>
-          <p className="font-mono text-xs text-zinc-500">#*&$@^$+%</p>
-        </div>
+        <p className="text-xs font-medium text-[#86868b] uppercase tracking-wider mb-2">
+          Direct
+        </p>
+        <h3 className="text-xl font-semibold text-[#f5f5f7] mb-2">Email</h3>
+        <p className="text-sm text-[#86868b] leading-relaxed mb-6">
+          Prefer writing directly? Send an email anytime.
+        </p>
       </div>
-
-      <p className="text-zinc-400 text-sm leading-relaxed mb-8">
-        You can reach me directly at the address below. I monitor this inbox
-        regularly.
-      </p>
 
       <a
         href="mailto:dev.mehrabhossain@gmail.com"
-        className="group flex flex-col gap-2 p-4 rounded-xl bg-zinc-950/50 border border-zinc-800 hover:border-cyan-500/50 transition-colors"
+        className="group flex items-center justify-between p-4 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.08] transition-colors"
       >
-        <span className="font-mono text-xs text-zinc-500 group-hover:text-cyan-500 transition-colors flex justify-between items-center">
-          MAIL_TO
-          <ArrowUpRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
-        </span>
-        <span className="text-zinc-200 text-sm sm:text-base font-medium break-all">
+        <span className="text-sm font-medium text-[#f5f5f7] truncate">
           dev.mehrabhossain@gmail.com
         </span>
+        <ArrowUpRight className="w-4 h-4 text-[#86868b] group-hover:text-white transition-colors flex-shrink-0" />
       </a>
     </div>
   );

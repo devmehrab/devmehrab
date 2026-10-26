@@ -65,37 +65,37 @@ const components: PortableTextComponents = {
       </h4>
     ),
     blockquote: ({ children }: { children?: ReactNode }) => (
-      <blockquote className="border-l-2 border-cyan-500 pl-4 my-6 italic text-zinc-300 font-sans">
+      <blockquote className="border-l-2 border-white/20 pl-4 my-6 italic text-[#86868b] font-sans">
         {children}
       </blockquote>
     ),
     normal: ({ children }: { children?: ReactNode }) => (
-      <p className="text-zinc-300 leading-relaxed my-4 text-base sm:text-lg">
+      <p className="text-[#a1a1a6] leading-relaxed my-4 text-base sm:text-lg">
         {children}
       </p>
     ),
   },
   list: {
     bullet: ({ children }: { children?: ReactNode }) => (
-      <ul className="list-disc list-inside space-y-2 my-4 text-zinc-300 pl-2">
+      <ul className="list-disc list-inside space-y-2 my-4 text-[#a1a1a6] pl-2">
         {children}
       </ul>
     ),
     number: ({ children }: { children?: ReactNode }) => (
-      <ol className="list-decimal list-inside space-y-2 my-4 text-zinc-300 pl-2">
+      <ol className="list-decimal list-inside space-y-2 my-4 text-[#a1a1a6] pl-2">
         {children}
       </ol>
     ),
   },
   marks: {
     strong: ({ children }: { children?: ReactNode }) => (
-      <strong className="font-semibold text-zinc-100">{children}</strong>
+      <strong className="font-semibold text-[#f5f5f7]">{children}</strong>
     ),
     em: ({ children }: { children?: ReactNode }) => (
-      <em className="italic text-zinc-200">{children}</em>
+      <em className="italic text-[#f5f5f7]">{children}</em>
     ),
     code: ({ children }: { children?: ReactNode }) => (
-      <code className="px-1.5 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-cyan-400 font-mono text-sm">
+      <code className="px-1.5 py-0.5 rounded bg-white/[0.08] text-[#f5f5f7] text-sm">
         {children}
       </code>
     ),
@@ -115,7 +115,7 @@ const components: PortableTextComponents = {
           href={value?.href || "#"}
           target={target}
           rel={rel}
-          className="text-cyan-400 underline underline-offset-4 decoration-cyan-500/40 hover:decoration-cyan-400 transition-colors"
+          className="text-[#2997ff] underline underline-offset-4 decoration-[#2997ff]/40 hover:opacity-85 transition-opacity"
         >
           {children}
         </Link>
