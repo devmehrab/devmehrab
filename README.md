@@ -83,7 +83,7 @@ engineer:
 ### Contribution Activity
 
 <p align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=devmehrab&theme=tokyo-night&hide_border=true&area=true" width="100%" alt="Activity Graph" />
+  <img src="https://raw.githubusercontent.com/devmehrab/devmehrab/output/github-contribution-grid-snake.svg" alt="Snake animation" />
 </p>
 
 ---
